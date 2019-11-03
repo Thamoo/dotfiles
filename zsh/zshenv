@@ -1,0 +1,4 @@
+export EDITOR="nvim"
+export BROWSER="brave"
+export TERMINAL="urxvt"
+export TERM="xterm-256color"

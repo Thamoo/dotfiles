@@ -1,0 +1,155 @@
+HISTFILE=~/.cache/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+bindkey -v
+KEYTIMEOUT=1 # reduce mode switchshing delay
+source ~/dotfiles/fzf/key-bindings.zsh
+source ~/dotfiles/fzf/completion.zsh
+
+
+if [ -z "$TMUX" ]
+then
+    tmux attach -t TMUX || tmux new -s TMUX
+fi
+
+# Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)		# Include hidden files.
+
+# setopt
+setopt auto_cd
+setopt correct
+setopt auto_name_dirs
+setopt auto_list
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
+
+# auto-ls
+chpwd() ls --color
+
+
+# aliases configs 
+alias I3='${=EDITOR} ~/dotfiles/i3/i3.config'
+alias I3b='${=EDITOR} ~/dotfiles/i3/config'
+alias Zsh='${=EDITOR} ~/dotfiles/zsh/zshrc'
+alias Zshenv='${=EDITOR} ~/dotfiles/zsh/zshenv'
+alias Zprofile='${=EDITOR} ~/dotfiles/zsh/zprofile'
+alias Neofetch='${=EDITOR} ~/dotfiles/zsh/config.conf'
+alias Xinit='${=EDITOR} ~/dotfiles/x/xinitrc'
+alias Xresources='${=EDITOR} ~/dotfiles/x/Xresources'
+alias Nvim='${=EDITOR} ~/dotfiles/nvim/init.vim'
+alias Termite='${=EDITOR} ~/dotfiles/termite/config'
+alias Bspwm='${=EDITOR} ~/dotfiles/bspwm/bspwmrc'
+alias Sxhkd='${=EDITOR} ~/dotfiles/sxhkd/sxhkdrc'
+alias Polybar='${=EDITOR} ~/dotfiles/polybar/config'
+alias PolybarL='${=EDITOR} ~/dotfiles/polybar/launch.sh'
+alias Fzfc='${=EDITOR} ~/dotfiles/fzf/completion.zsh'
+alias Fzfk='${=EDITOR} ~/dotfiles/fzf/key-bindings.zsh'
+alias Tmux='${=EDITOR} ~/dotfiles/tmux/.tmux.conf'
+alias Compton='${=EDITOR} ~/dotfiles/compton/compton.conf'
+alias Newsboat='${=EDITOR} ~/dotfiles/newsboat/config'
+alias Urls='${=EDITOR} ~/dotfiles/newsboat/urls'
+
+# alias shortcuts
+alias sshdesktop='ssh thamoo@192.168.0.156'
+alias sshlaptop='ssh thamoo@192.168.0.125'
+alias Doc='cd ~/Documents'
+alias Down='cd ~/Downloads'
+alias Pict='cd ~/Pictures'
+alias Proj='cd ~/Projects'
+alias Uni='cd ~/University'
+alias Testing='cd ~/Testing'
+alias Conf='cd ~/.config'
+
+# alias others
+alias dirs='dirs -v'
+alias S='~/scripts/sync.sh'
+alias v='nvim'
+alias r='ranger'
+alias untar='tar -zxvf'
+alias ls='ls --color'
+alias ll='ls -l --color'
+alias la='ls -a --color'
+alias l='ls -la --color'
+
+# neofetch
+neofetch
+
+# powerlevel9k
+source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh dir)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs)
+
+
+# Change cursor shape for different vi modes.
+# function zle-keymap-select {
+#   if [[ ${KEYMAP} == vicmd ]] ||
+#      [[ $1 = 'block' ]]; then
+#     echo -ne '\e[1 q'
+#   elif [[ ${KEYMAP} == main ]] ||
+#        [[ ${KEYMAP} == viins ]] ||
+#        [[ ${KEYMAP} = '' ]] ||
+#        [[ $1 = 'beam' ]]; then
+#     echo -ne '\e[5 q'
+#   fi
+# }
+# zle -N zle-keymap-select
+# zle-line-init() {
+#     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+#     echo -ne "\e[5 q"
+# }
+# zle -N zle-line-init
+# echo -ne '\e[5 q' # Use beam shape cursor on startup.
+# preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+# Modal cursor color for vi's insert/normal modes.
+# http://stackoverflow.com/questions/30985436/
+# https://bbs.archlinux.org/viewtopic.php?id=95078
+# http://unix.stackexchange.com/questions/115009/
+zle-line-init () {
+  zle -K viins
+  #echo -ne "\033]12;Grey\007"
+  #echo -n 'grayline1'
+  echo -ne "\033]12;Gray\007"
+  echo -ne "\033[4 q"
+  #print 'did init' >/dev/pts/16
+}
+zle -N zle-line-init
+zle-keymap-select () {
+  if [[ $KEYMAP == vicmd ]]; then
+    if [[ -z $TMUX ]]; then
+      printf "\033]12;grey\007"
+      printf "\033[2 q"
+    else
+      printf "\033Ptmux;\033\033]12;grey\007\033\\"
+      printf "\033Ptmux;\033\033[2 q\033\\"
+    fi
+  else
+    if [[ -z $TMUX ]]; then
+      printf "\033]12;grey\007"
+      printf "\033[4 q"
+    else
+      printf "\033Ptmux;\033\033]12;grey\007\033\\"
+      printf "\033Ptmux;\033\033[4 q\033\\"
+    fi
+  fi
+  #print 'did select' >/dev/pts/16
+}
+zle -N zle-keymap-select
+
+
+
+# path
+export PATH=$PATH:~/.local/lib/python3.7/site-packages
+
+# zsh-syntax-hl.. should be last
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
