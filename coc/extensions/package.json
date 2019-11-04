@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "coc-python": ">=1.2.6",
+    "coc-highlight": ">=1.2.5",
+    "coc-snippets": ">=2.1.13"
+  }
+}

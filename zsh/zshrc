@@ -120,7 +120,7 @@ zle-line-init () {
   #echo -ne "\033]12;Grey\007"
   #echo -n 'grayline1'
   echo -ne "\033]12;Gray\007"
-  echo -ne "\033[4 q"
+  echo -ne "\033[5 q"
   #print 'did init' >/dev/pts/16
 }
 zle -N zle-line-init
@@ -128,18 +128,18 @@ zle-keymap-select () {
   if [[ $KEYMAP == vicmd ]]; then
     if [[ -z $TMUX ]]; then
       printf "\033]12;grey\007"
-      printf "\033[2 q"
+      printf "\033[2 q" #2
     else
       printf "\033Ptmux;\033\033]12;grey\007\033\\"
-      printf "\033Ptmux;\033\033[2 q\033\\"
+      printf "\033Ptmux;\033\033[2 q\033\\" #2
     fi
   else
     if [[ -z $TMUX ]]; then
       printf "\033]12;grey\007"
-      printf "\033[4 q"
+      printf "\033[5 q" #4
     else
       printf "\033Ptmux;\033\033]12;grey\007\033\\"
-      printf "\033Ptmux;\033\033[4 q\033\\"
+      printf "\033Ptmux;\033\033[5 q\033\\" #4
     fi
   fi
   #print 'did select' >/dev/pts/16

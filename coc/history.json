@@ -1,0 +1,14 @@
+{
+  "extensions": {
+    "%2Fhome%2Fthamoo%2F": {
+      "config": [
+        ":q"
+      ]
+    }
+  },
+  "diagnostics": {
+    "%2Fhome%2Fthamoo": [
+      "caaw"
+    ]
+  }
+}
