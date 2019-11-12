@@ -1,4 +1,4 @@
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
-export PATH="$PATH:/home/thamoo/.local/bin"
+export PATH=$PATH:/home/thamoo/.local/bin
 XDG_CONFIG_HOME=$HOME/.config
 export XDG_CONDIF_HOME

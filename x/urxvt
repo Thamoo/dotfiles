@@ -1,0 +1,21 @@
+urxvt.foreground: fg
+urxvt.background: bg
+urxvt.cursorColor: fg
+urxvt.cursorColor2: bg
+
+urxvt.color0:       black
+urxvt.color8:       black2
+urxvt.color1:       red
+urxvt.color9:       red2
+urxvt.color2:       green
+urxvt.color10:      green2
+urxvt.color3:       yellow
+urxvt.color11:      yellow2
+urxvt.color4:       blue
+urxvt.color12:      blue2
+urxvt.color5:       magenta
+urxvt.color13:      magenta2
+urxvt.color6:       cyan
+urxvt.color14:      cyan2
+urxvt.color7:       white
+urxvt.color15:      white2

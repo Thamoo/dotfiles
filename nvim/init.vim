@@ -1,17 +1,20 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'joshdick/onedark.vim'
+" Plug 'joshdick/onedark.vim'
 Plug '907th/vim-auto-save'
 Plug 'easymotion/vim-easymotion'
 Plug 'mboughaba/i3config.vim'
 Plug 'lervag/vimtex'
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'neoclide/coc-python'
+Plug 'jiangmiao/auto-pairs'
+Plug 'scrooloose/nerdtree'
+" Plug 'christoomey/vim-tmux-navigator'
 " Plug 'Shougo/deoplete.nvim'
 " Plug 'deoplete-plugins/deoplete-jedi'
 " Plug 'dense-analysis/ale'
@@ -23,13 +26,21 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'metakirby5/codi.vim'
 call plug#end()
 
-autocmd CursorHold * silent call CocActionAsync('highlight')
+let base16colorspace=256  " Access colors present in 256 colorspace
 
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd BufWritePost Xresources :! xrdb ~/.Xresources
 
 " set global
 let maplocalleader = "\\"
 set scrolloff=999
-set termguicolors
+" set termguicolors
+" set notermguicolors t_Co=16
 set cursorline
 set number
 set relativenumber
@@ -49,18 +60,9 @@ set signcolumn=yes
 let g:auto_save = 1
 let g:auto_save_silent = 1
 set noswapfile
-let g:airline_theme='onedark'
-colorscheme onedark
-
-
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
-if exists('$TMUX')
-    let &t_SI .= "\ePtmux;\e\e[=1c\e\\"
-    let &t_EI .= "\ePtmux;\e\e[=2c\e\\"
- else
-    let &t_SI .= "\e[=1c"
-    let &t_EI .= "\e[=2c"
- endif
+colorscheme base16-default-dark
+" let g:airline_theme='onedark'
+let g:airline_powerline_fonts = 1
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -108,7 +110,7 @@ omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
 
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 
 " keybinds
@@ -129,8 +131,8 @@ nmap s <Plug>(easymotion-s)
 vmap s <Plug>(easymotion-s)
 nnoremap oo :call append(line('.'), '')<CR>
 nnoremap OO :call append(line('.')-1, '')<CR>
-" inoremap <silent><expr><tab>  pumvisible() ? "\<C-n>" : "\<tab>"
-" inoremap <silent><expr><s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
+inoremap <silent><expr><tab>  pumvisible() ? "\<C-n>" : "\<tab>"
+inoremap <silent><expr><s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
 
 " fzf
 function! s:find_git_root()
@@ -148,11 +150,38 @@ nnoremap zc :Commands<CR>
 nnoremap gs :CocCommand snippets.editSnippets<CR>
 nnoremap cq :Commits<CR>
 
+map <space><tab> :NERDTreeToggle<CR>
+
 nnoremap <tab>[ :split<CR>
 nnoremap <tab>] :vsplit<CR>
+nnoremap <tab>x :q<CR>
+nnoremap <tab>\ :split<CR>:resize 10<CR>:term<CR>a
+
+" Set ultisnips triggers
+" let g:UltiSnipsExpandTrigger="<tab>"                                       
+" let g:UltiSnipsJumpForwardTrigger="<tab>"                                  
+" let g:UltiSnipsJumpBackwardTrigger="<s-tab>" 
+
+tnoremap <Esc> <C-\><C-n>
+
+" use alt + {hjkl} for navigation
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
+inoremap <A-h> <C-\><C-N><C-w>h
+inoremap <A-j> <C-\><C-N><C-w>j
+inoremap <A-k> <C-\><C-N><C-w>k
+inoremap <A-l> <C-\><C-N><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
 
 " latex
 let g:tex_flavor='latex'
 let g:vimtex_view_method = 'zathura'
 let g:livepreview_previewer = 'zathura'
 
+highlight CursorLine cterm=None ctermbg=234 ctermfg=None
+highlight CocHighlightText ctermfg=Red  guibg=#004729

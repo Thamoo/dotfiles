@@ -7,10 +7,10 @@ source ~/dotfiles/fzf/key-bindings.zsh
 source ~/dotfiles/fzf/completion.zsh
 
 
-if [ -z "$TMUX" ]
-then
-    tmux attach -t TMUX || tmux new -s TMUX
-fi
+# if [ -z "$TMUX" ]
+# then
+#     tmux attach -t TMUX || tmux new -s TMUX
+# fi
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -24,6 +24,7 @@ setopt auto_cd
 setopt correct
 setopt auto_name_dirs
 setopt auto_list
+setopt aliases
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
@@ -146,10 +147,14 @@ zle-keymap-select () {
 }
 zle -N zle-keymap-select
 
-
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 # path
-export PATH=$PATH:~/.local/lib/python3.7/site-packages
+export PATH=$PATH:~/.local/lib/python3.7/site-packages:~/.local/bin:/home/thamoo/dotfiles/scripts
 
 # zsh-syntax-hl.. should be last
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

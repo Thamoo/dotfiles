@@ -2,6 +2,9 @@
   "dependencies": {
     "coc-python": ">=1.2.6",
     "coc-highlight": ">=1.2.5",
-    "coc-snippets": ">=2.1.13"
+    "coc-snippets": ">=2.1.13",
+    "coc-java": ">=1.4.5",
+    "coc-vimtex": ">=1.0.2",
+    "coc-tsserver": ">=1.4.5"
   }
 }

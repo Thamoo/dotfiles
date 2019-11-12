@@ -1,0 +1,3 @@
+rofi.color-enabled: true
+rofi.color-window: bg
+rofi.color-normal: bg,  fg,  red2, cyan ,fg

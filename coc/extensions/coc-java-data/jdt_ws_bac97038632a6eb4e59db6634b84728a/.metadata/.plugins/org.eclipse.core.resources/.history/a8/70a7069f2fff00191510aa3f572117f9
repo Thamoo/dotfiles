@@ -1,0 +1,19 @@
+import java.util.ArrayList;
+
+public class hellojava {
+    public static void main(String[] args) {
+        System.out.printf("Hello, %s%n", args[0]);
+    }
+
+
+    public void meowMEOW(String cat) {
+            System.out.println("coco");
+            ArrayList<String> coco = new ArrayList<>();
+    }
+
+
+    public void coco() {
+        meowMEOW("meow");
+    }
+}
+

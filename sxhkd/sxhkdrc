@@ -3,20 +3,42 @@ super + Return
 	termite
 
 # program launcher
-super + d
+F12
 	dmenu_run
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
 
-#
-# bspwm hotkeys
-#
+super + {_,shift + } d
+	bspc {desktop -f,node -d} 'doc'
 
-# open browser
-super + w
-    brave
+super + {_,shift + } f
+	bspc {desktop -f,node -d} 'doc2'
+
+super + {_,shift + } t
+	bspc {desktop -f,node -d} 'todo'
+
+super + {_,shift + } m
+	bspc {desktop -f,node -d} 'mail'
+
+super + {_,shift + } w
+	bspc {desktop -f,node -d} 'web'
+
+super + {_,shift + } n
+	bspc {desktop -f,node -d} 'ncmpcpp'
+
+super + {_,shift + } i
+	bspc {desktop -f,node -d} 'irc'
+
+super + {_,shift + } z
+	bspc {desktop -f,node -d} 'htop'
+
+super + {_,shift + } p
+	bspc {desktop -f,node -d} 'prog'
+
+super + {_,shift + } space
+	bspc {desktop -f,node -d} 'main'
 
 # quit/restart bspwm
 super + alt + {q,r}
