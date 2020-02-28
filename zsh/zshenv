@@ -1,4 +1,8 @@
 export EDITOR="nvim"
 export BROWSER="brave"
-export TERMINAL="urxvt"
+export TERMINAL="termite"
 export WEECHAT_HOME="~/.config/weechat"
+
+# export FZF_DEFAULT_COMMAND="fd . $HOME"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd -t d . $HOME"

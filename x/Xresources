@@ -2,9 +2,7 @@ URxvt.font: xft:Hack Nerd Font Mono:size=14
 URxvt.letterSpace: -1
 URxvt*scrollBar: false
 
-#include "/home/thamoo/dotfiles/x/xresources/base16-ocean.Xresources"
-
-
+/* #include "/home/thamoo/dotfiles/x/xresources/base16-dracula-256.Xresources" */
 
 /* #include "/home/thamoo/dotfiles/x/urxvt" */
 /* #include "/home/thamoo/dotfiles/x/themes/rofi" */

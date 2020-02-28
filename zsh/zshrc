@@ -3,14 +3,12 @@ HISTSIZE=10000
 SAVEHIST=10000
 bindkey -v
 KEYTIMEOUT=1 # reduce mode switchshing delay
+
+# fzf
 source ~/dotfiles/fzf/key-bindings.zsh
 source ~/dotfiles/fzf/completion.zsh
 
 
-# if [ -z "$TMUX" ]
-# then
-#     tmux attach -t TMUX || tmux new -s TMUX
-# fi
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -47,6 +45,8 @@ alias Neofetch='${=EDITOR} ~/dotfiles/zsh/config.conf'
 alias Xinit='${=EDITOR} ~/dotfiles/x/xinitrc'
 alias Xresources='${=EDITOR} ~/dotfiles/x/Xresources'
 alias Nvim='${=EDITOR} ~/dotfiles/nvim/init.vim'
+alias Mpd='${=EDITOR} ~/dotfiles/music/mpd.conf'
+alias Ncmpcpp='${=EDITOR} ~/dotfiles/music/config'
 alias Termite='${=EDITOR} ~/dotfiles/termite/config'
 alias Bspwm='${=EDITOR} ~/dotfiles/bspwm/bspwmrc'
 alias Sxhkd='${=EDITOR} ~/dotfiles/sxhkd/sxhkdrc'
@@ -55,7 +55,8 @@ alias PolybarL='${=EDITOR} ~/dotfiles/polybar/launch.sh'
 alias Fzfc='${=EDITOR} ~/dotfiles/fzf/completion.zsh'
 alias Fzfk='${=EDITOR} ~/dotfiles/fzf/key-bindings.zsh'
 alias Tmux='${=EDITOR} ~/dotfiles/tmux/.tmux.conf'
-alias Compton='${=EDITOR} ~/dotfiles/compton/compton.conf'
+alias Rtorrent='${=EDITOR} ~/dotfiles/rtorrent/rtorrent.rc'
+alias Picom='${=EDITOR} ~/dotfiles/picom/picom.conf'
 alias Newsboat='${=EDITOR} ~/dotfiles/newsboat/config'
 alias Urls='${=EDITOR} ~/dotfiles/newsboat/urls'
 
@@ -72,7 +73,7 @@ alias Conf='cd ~/.config'
 
 # alias others
 alias dirs='dirs -v'
-alias S='~/scripts/sync.sh'
+# alias T='~/dotfiles/scripts/theme-changer.sh'
 alias v='nvim'
 alias r='ranger'
 alias untar='tar -zxvf'
@@ -80,9 +81,10 @@ alias ls='ls --color'
 alias ll='ls -l --color'
 alias la='ls -a --color'
 alias l='ls -la --color'
+alias t='tmux attach -t TMUX || tmux new -s TMUX'
 
 # neofetch
-neofetch
+# neofetch
 
 # powerlevel9k
 source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme

@@ -50,7 +50,7 @@ mpd_port = 6600
 ##        name            "Visualizer feed"
 ##        path            "/home/chris/.mpd/mpd.fifo"
 ##        format          "44100:16:2"
-}
+# }
 ##
 #
 #visualizer_fifo_path = /home/chris/.mpd/mpd.fifo
